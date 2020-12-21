@@ -32,11 +32,11 @@
         <div class="hidden md:block">
             <ul class="flex uppercase font-special font-semibold text-lg">
                 <li><a class="btn bg-primary-100 hover:bg-accent" href="#">Login</a></li>
-                <li><a class="btn bg-accent ml-4 hover:bg-primary-100" href=" #">Register</a></li>
+                <li><a class="btn bg-accent ml-4 hover:bg-primary-100" href=" {{ route('register') }}">Register</a></li>
             </ul>
         </div>
     </header>
-    <main class="container mx-auto my-10 pb-5 md:p-5 border-b md:max-w-4xl">
+    <main class="container mx-auto my-5 md:p-5 md:max-w-4xl">
         @yield('content')
     </main>
 

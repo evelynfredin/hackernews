@@ -2,7 +2,7 @@
 
 @section('content')
 
-<article class="flex">
+<article class="flex my-5 pb-10 border-b">
     <button class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-5 mr-5 bg-primary-100 dark:bg-primary-500">
         <div class="text-3xl font-special text-accent px-3 font-semibold border-b-2 border-gray-400 dark:text-primary-300">1</div>
         <div class="text-xl font-special font-semibold text-accent dark:text-primary-300">80</div>
