@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 mx-5 text-primary-400 font-body dark:bg-primary-400 dark:text-primary-200">
+<body class="bg-gray-100 mx-5 lg:mx-30 text-primary-400 font-body dark:bg-primary-400 dark:text-primary-200">
     <header class="container mx-auto flex justify-between py-6 items-center border-b border-gray-200">
         <div class="logo">
             <a href="#">
@@ -36,11 +36,10 @@
             </ul>
         </div>
     </header>
-    <main>
-        <p>hello</p>
+    <main class="container mx-auto my-10 pb-5 md:p-5 border-b md:max-w-4xl">
+        @yield('content')
     </main>
 
-    @yield('content')
 </body>
 
 </html>
