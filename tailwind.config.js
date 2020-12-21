@@ -3,6 +3,10 @@ module.exports = {
   darkMode: "media",
   theme: {
     extend: {
+      fontFamily: {
+        special: ["Maven Pro, sans-serif"],
+        body: ["Source Code Pro, monospace"]
+      },
       colors: {
         accent: "#2DCAAD",
         primary: {
@@ -11,6 +15,10 @@ module.exports = {
           300: "#847DB4",
           400: "#092137"
         }
+      },
+      boxShadow: {
+        offset: "3px 3px #000000",
+        offsetAlt: "3px 3px #C4B9DA"
       }
     }
   },
