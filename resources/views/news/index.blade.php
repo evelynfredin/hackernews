@@ -8,7 +8,7 @@
         <div class="text-xl font-special font-semibold text-accent dark:text-primary-300">80</div>
     </button>
     <div>
-        <h2 class="text-lg md:text-xl font-medium">Air-FI: Generating Covert Wi-Fi Signals from Air-Gapped Computers <span class="text-accent dark:text-primary-100"> [ arxiv.org ]</span></h2>
+        <h3 class="text-lg md:text-xl font-medium">Air-FI: Generating Covert Wi-Fi Signals from Air-Gapped Computers <span class="text-accent dark:text-primary-100"> [ arxiv.org ]</span></h3>
         <p>By <a class="dark:text-accent dark:hover:text-primary-100" href="#">djjdjdj</a> day ago • <a class="dark:text-accent dark:hover:text-primary-100" href="#">34 comments</a></p>
     </div>
 </article>

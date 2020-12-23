@@ -19,6 +19,7 @@ module.exports = {
       },
       boxShadow: {
         offset: "3px 3px #000000",
+        offsetLG: "7px 7px #000000",
         offsetAlt: "3px 3px #C4B9DA"
       }
     }
