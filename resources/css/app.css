@@ -6,11 +6,15 @@
 @tailwind utilities;
 
 .nav-item {
-  @apply m-3 lg:m-5 hover:text-primary-300 border-b-2 border-gray-100 hover:border-primary-400 md:dark:border-primary-400 md:dark:hover:border-accent transition ease-out duration-300;
+  @apply m-3 lg:m-5 hover:text-primary-300 border-none md:border-b-2 md:border-gray-100 md:hover:border-primary-400 md:dark:border-primary-400 md:dark:hover:border-accent dark:hover:text-primary-100 transition ease-out duration-300;
 }
 
 .btn {
-  @apply py-1 px-4 text-black border border-black shadow-offset font-body transition ease-out duration-500;
+  @apply py-3 px-5 md:py-1 md:px-4 text-black border border-black shadow-offset font-body transition ease-out duration-500;
+}
+
+.btn-square {
+  @apply p-2 text-black border border-black shadow-offset font-body transition ease-out duration-500;
 }
 
 .btnAlt {
