@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,6 +23,11 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-        dd('store');
+        // Store in database
+        User::create([
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => Hash::make($request->password)
+        ]);
     }
 }

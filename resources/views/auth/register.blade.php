@@ -46,7 +46,7 @@
 
             <label class="block">
                 <span class="text-gray-700 dark:text-primary-100">Password confirmation:</span>
-                <input class="formInput" placeholder="Make it match" type="password" name="password" id="password">
+                <input class="formInput" placeholder="Make it match" type="password" name="password_confirmation" id="password_confirmation">
             </label>
 
             <div class="flex mt-6">
