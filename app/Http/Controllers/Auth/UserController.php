@@ -29,5 +29,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password)
         ]);
+
+        return redirect()->route('settings');
     }
 }
