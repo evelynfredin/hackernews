@@ -30,6 +30,9 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
+        // Sign in user
+        auth()->attempt($request->only('email', 'password'));
+
         return redirect()->route('settings');
     }
 }

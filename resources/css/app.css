@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 .nav-item {
-  @apply m-3 lg:m-5 hover:text-primary-300 border-none md:border-b-2 md:border-gray-100 md:hover:border-primary-400 md:dark:border-primary-400 md:dark:hover:border-accent dark:hover:text-primary-100 transition ease-out duration-300;
+  @apply m-3 lg:m-5 hover:text-primary-300 border-b-2 border-transparent hover:border-accent dark:hover:text-primary-100 transition ease-out duration-300;
 }
 
 .btn {
