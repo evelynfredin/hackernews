@@ -45,12 +45,12 @@
                             <ul class="flex md:h-auto items-center flex-col md:flex-row uppercase text-lg">
 
                                 @auth
-                                <li><a class="md:mr-5 my-10 md:my-0" href="#">Logout</a></li>
+                                <li><a class="md:mr-5 my-10 md:my-0 text-sm" href="#">Logout</a></li>
                                 <li><a href="{{ route('settings') }}"><img class="w-10 h-10 object-contain rounded-full border border-accent" src="img/avatar/dummy.jpg" alt=""></a></li>
                                 @endauth
 
                                 @guest
-                                <li class="my-10 md:my-0"><a class="btn md:mb-0 bg-primary-100 hover:bg-accent" href="#">Login</a></li>
+                                <li class="my-10 md:my-0"><a class="btn md:mb-0 bg-primary-100 hover:bg-accent" href=" {{ route('login') }} ">Login</a></li>
                                 <li><a class="btn bg-accent md:ml-4 hover:bg-primary-100" href=" {{ route('register') }}">Sign Up</a></li>
                                 @endguest
 
