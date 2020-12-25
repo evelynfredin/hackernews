@@ -39,6 +39,13 @@
             </div>
             @enderror
 
+            <div class="flex mt-6">
+                <label class="flex items-center">
+                    <input type="checkbox" name="remember" id="remember">
+                    <span class="ml-2">Remember me</span>
+                </label>
+            </div>
+
             <button class="btnAlt mt-5 bg-accent hover:bg-primary-400 hover:text-primary-100" type="submit">Login</button>
         </form>
     </div>

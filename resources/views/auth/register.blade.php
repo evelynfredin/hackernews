@@ -51,7 +51,7 @@
 
             <div class="flex mt-6">
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox">
+                    <input type="checkbox" name="newsletter" id="newsletter">
                     <span class="ml-2">I want the newsletter</span>
                 </label>
             </div>
