@@ -15,4 +15,12 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function latest()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        return view('news.latest', [
+            'posts' => $posts
+        ]);
+    }
 }
