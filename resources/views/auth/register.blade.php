@@ -24,7 +24,7 @@
 
             <label class=" block">
                 <span class="text-gray-700 dark:text-primary-100">Username:</span>
-                <input class="formInput" placeholder="Username" type="username" name="username" id="username" value="{{ old('username')}}">
+                <input class="formInput" placeholder="Username" type="text" name="username" id="username" value="{{ old('username')}}">
             </label>
 
             @error('username')

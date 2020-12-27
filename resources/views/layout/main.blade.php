@@ -9,10 +9,10 @@
 </head>
 
 <body class="container mx-auto bg-gray-100 lg:mx-30 text-primary-400 font-body dark:bg-primary-400 dark:text-primary-200">
-    <header class="container mx-auto py-6 px-5 md:border-b md:border-gray-200">
+    <header class="container mx-auto py-6 px-5 md:border-b md:dark:border-primary-500">
         <nav>
             <div class="container mx-auto md:flex md:justify-between md:items-center">
-                <div class="flex justify-between items-center border-b pb-8 md:pb-0 md:border-none">
+                <div class="flex justify-between items-center border-b dark:border-primary-500 pb-8 md:pb-0 md:border-none">
                     <!-- Logo -->
                     <div class="logo">
                         <a href="#">
@@ -37,7 +37,7 @@
                                 <li class="py-5 md:py-0"><a class="nav-item" href="#">Top</a></li>
                                 <li class="pb-5 md:pb-0"><a class="nav-item" href="#">New</a></li>
                                 <li class="pb-5 md:pb-0"><a class="nav-item" href="#">Comments</a></li>
-                                <li class="pb-5 md:pb-0"><a class="nav-item" href="#">Submit</a></li>
+                                <li class="pb-5 md:pb-0"><a class="nav-item" href="{{ route('submit') }}">Submit</a></li>
                             </ul>
                         </div>
                         <!-- Auth buttons -->
