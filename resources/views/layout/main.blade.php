@@ -48,15 +48,20 @@
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <li>
-                                        <button type="submit" class="md:mr-5 my-10 md:my-0 text-sm hover:text-accent">Logout</button>
+                                        <button type="submit" class="md:mr-5 my-10 md:my-0 text-sm hover:text-accent inline-flex h-auto items-center">
+                                            <span class="pr-2">Logout</span>
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
                                     </li>
                                 </form>
                                 <li><a href="{{ route('settings') }}"><img class="w-10 h-10 object-contain rounded-full border border-accent" src="img/avatar/dummy.jpg" alt=""></a></li>
                                 @endauth
 
                                 @guest
-                                <li class="my-10 md:my-0"><a class="btn md:mb-0 bg-primary-100 hover:bg-accent" href="{{ route('login') }}">Login</a></li>
-                                <li><a class="btn bg-accent md:ml-4 hover:bg-primary-100" href="{{ route('register') }}">Sign Up</a></li>
+                                <li class="my-10 md:my-0"><a class="btn md:mb-0 bg-primary-100 hover:bg-accent md:text-sm" href="{{ route('login') }}">Login</a></li>
+                                <li><a class="btn bg-accent md:ml-4 hover:bg-primary-100 md:text-sm" href="{{ route('register') }}">Sign Up</a></li>
                                 @endguest
 
                             </ul>

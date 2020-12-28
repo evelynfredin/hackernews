@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Post\PostVoteController;
 use App\Http\Controllers\Post\SubmitController;
 
 Route::get('/register', [UserController::class, 'index'])->name('register');
@@ -23,3 +24,6 @@ Route::post('/submit', [SubmitController::class, 'store']);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/latest', [PostController::class, 'latest'])->name('latest');
+
+Route::post('post/{post}/votes', [PostVoteController::class, 'store'])->name('posts.votes');
+Route::delete('post/{post}/votes', [PostVoteController::class, 'destroy'])->name('posts.votes');

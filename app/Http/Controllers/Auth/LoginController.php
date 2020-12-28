@@ -28,6 +28,6 @@ class LoginController extends Controller
             return back()->with('status', 'Email and/or password are incorrect.');
         }
 
-        return redirect()->route('settings');
+        return redirect()->route('home');
     }
 }

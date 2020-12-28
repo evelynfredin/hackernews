@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::paginate(10);
         return view('news.index', [
             'posts' => $posts
         ]);
@@ -18,7 +18,7 @@ class PostController extends Controller
 
     public function latest()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         return view('news.latest', [
             'posts' => $posts
         ]);
