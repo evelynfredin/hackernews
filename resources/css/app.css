@@ -28,10 +28,3 @@ p a {
 .formInput {
   @apply bg-gray-100 dark:bg-primary-500 border border-accent p-3 my-2 block w-full dark:border-primary-300;
 }
-
-/* input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea {
-  @apply dark:bg-primary-500;
-} */

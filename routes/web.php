@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Post\PostVoteController;
 use App\Http\Controllers\Post\SubmitController;
+use App\Http\Controllers\UserProfileController;
 
 Route::get('/register', [UserController::class, 'index'])->name('register');
 Route::post('/register', [UserController::class, 'store']);
@@ -28,3 +29,5 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 
 Route::post('post/{post}/votes', [PostVoteController::class, 'store'])->name('posts.votes');
 Route::delete('post/{post}/votes', [PostVoteController::class, 'destroy'])->name('posts.votes');
+
+Route::get('/user/{user:username}', [UserProfileController::class, 'index'])->name('user.profile');
