@@ -24,6 +24,7 @@ Route::post('/submit', [SubmitController::class, 'store']);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/latest', [PostController::class, 'latest'])->name('latest');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 Route::post('post/{post}/votes', [PostVoteController::class, 'store'])->name('posts.votes');
 Route::delete('post/{post}/votes', [PostVoteController::class, 'destroy'])->name('posts.votes');

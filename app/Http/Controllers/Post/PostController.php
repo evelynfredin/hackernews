@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::with(['user', 'votes'])->paginate(10);
         return view('news.index', [
             'posts' => $posts
         ]);
@@ -18,9 +18,18 @@ class PostController extends Controller
 
     public function latest()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::with(['user', 'votes'])->latest()->paginate(10);
         return view('news.latest', [
             'posts' => $posts
         ]);
+    }
+
+    public function destroy(Post $post)
+    {
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        return back();
     }
 }
