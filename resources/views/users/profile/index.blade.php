@@ -26,7 +26,7 @@
 
 
 @if ($posts->count())
-<h2 class="text-accent text-2xl">Posts</h2>
+<h2 class="font-special font-semibold text-xl uppercase">Posts</h2>
 
 @foreach ($posts as $index => $post)
 
