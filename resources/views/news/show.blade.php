@@ -93,8 +93,8 @@
     <form action="{{ route('posts.comments', $post->id) }}" method="POST">
         @csrf
         <label class="block mt-5">
-            <span>Comment:</span>
-            <textarea class="formInput" name="comment" id="comment" cols="30" rows="5" placeholder="Add a comment"></textarea>
+            <span>Got something to say?</span>
+            <textarea class="formInput" name="comment" id="comment" cols="30" rows="3" placeholder="Add a comment"></textarea>
         </label>
 
         @error('comment')
@@ -110,5 +110,14 @@
 <p>Signin to comment</p>
 @endauth
 
+<h3 class="font-special text-lg font-semibold mt-20 mb-10 uppercase">Comments</h3>
+@foreach ($post->comments as $comment)
+
+<article class="py-6 px-10 border rounded-lg m-4 dark:border-primary-500">
+    <p>{{ $comment->comment }}</p>
+    <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}</p>
+</article>
+
+@endforeach
 
 @endsection

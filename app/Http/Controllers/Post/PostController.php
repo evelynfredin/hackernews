@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['user', 'votes'])->paginate(10);
+        $posts = Post::with(['user', 'votes', 'comments'])->paginate(10);
         return view('news.index', [
             'posts' => $posts
         ]);
@@ -19,16 +19,17 @@ class PostController extends Controller
 
     public function latest()
     {
-        $posts = Post::with(['user', 'votes'])->latest()->paginate(10);
+        $posts = Post::with(['user', 'votes', 'comments'])->latest()->paginate(10);
         return view('news.latest', [
             'posts' => $posts
         ]);
     }
 
-    public function show(Post $post)
+    public function show(Post $post, Comment $comments)
     {
         return view('news.show', [
             'post' => $post,
+            'comments' => $comments
         ]);
     }
 
