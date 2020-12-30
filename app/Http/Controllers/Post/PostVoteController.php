@@ -18,7 +18,6 @@ class PostVoteController extends Controller
         if ($post->votedBy($request->user())) {
             return response(null, 409);
         }
-
         $post->votes()->create([
             'user_id' => $request->user()->id,
         ]);

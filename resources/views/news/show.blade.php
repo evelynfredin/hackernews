@@ -40,7 +40,7 @@
 
     @guest
 
-    <a href="{{ route('login') }}" class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
+    <a href="{{ route('login') }}" class="flex flex-col justify-center max-h-10 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
         <div class="text-xl h-auto items-center font-special font-semibold text-accent dark:text-primary-300 inline-flex">
             {{ $post->votes->count() }}
             <span>
@@ -87,5 +87,27 @@
         </div>
     </div>
 </article>
+
+<div>
+    @auth
+    <form action="{{ route('posts.comments', $post->id) }}" method="POST">
+        @csrf
+        <label class="block mt-5">
+            <span>Comment:</span>
+            <textarea class="formInput" name="comment" id="comment" cols="30" rows="5" placeholder="Add a comment"></textarea>
+        </label>
+
+        @error('comment')
+        <div class="bg-red-500 py-1 px-3 mb-3 text-primary-100 mt-2">
+            {{ $message }}
+        </div>
+        @enderror
+
+        <button class="btnAlt shadow-offset mt-5 bg-accent hover:bg-primary-300 hover:text-primary-100" type="submit">Submit</button>
+    </form>
+</div>
+@else
+<p>Signin to comment</p>
+@endauth
 
 @endsection
