@@ -25,9 +25,11 @@ Route::post('/submit', [SubmitController::class, 'store']);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/latest', [PostController::class, 'latest'])->name('latest');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-Route::post('post/{post}/votes', [PostVoteController::class, 'store'])->name('posts.votes');
-Route::delete('post/{post}/votes', [PostVoteController::class, 'destroy'])->name('posts.votes');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('news.show');
+
+Route::post('/post/{post}/votes', [PostVoteController::class, 'store'])->name('posts.votes');
+Route::delete('/post/{post}/votes', [PostVoteController::class, 'destroy'])->name('posts.votes');
 
 Route::get('/user/{user:username}', [UserProfileController::class, 'index'])->name('user.profile');

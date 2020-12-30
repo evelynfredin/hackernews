@@ -1,4 +1,6 @@
-@props(['index' => $index, 'post' => $post])
+@extends('layout.main')
+
+@section('content')
 
 <article class="flex py-10 border-b dark:border-primary-500">
     @auth
@@ -7,7 +9,6 @@
         @csrf
         @method('DELETE')
         <button class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
-            <div class="text-3xl font-special text-accent px-3 font-semibold border-b-2 border-gray-400 dark:text-primary-300">{{ ++$index }}</div>
             <div class="text-xl h-auto items-center font-special font-semibold text-accent dark:text-primary-300 inline-flex">
                 {{ $post->votes->count() }}
                 <span>
@@ -23,7 +24,6 @@
     <form action="{{ route('posts.votes', $post) }}" method="POST">
         @csrf
         <button class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
-            <div class="text-3xl font-special text-accent px-3 font-semibold border-b-2 border-gray-400 dark:text-primary-300">{{ ++$index }}</div>
             <div class="text-xl h-auto items-center font-special font-semibold text-accent dark:text-primary-300 inline-flex">
                 {{ $post->votes->count() }}
                 <span>
@@ -35,15 +35,12 @@
         </button>
     </form>
 
-
-
     @endif
     @endauth
 
     @guest
 
     <a href="{{ route('login') }}" class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
-        <div class="text-3xl font-special text-accent px-3 font-semibold border-b-2 border-gray-400 dark:text-primary-300">{{ ++$index }}</div>
         <div class="text-xl h-auto items-center font-special font-semibold text-accent dark:text-primary-300 inline-flex">
             {{ $post->votes->count() }}
             <span>
@@ -66,18 +63,19 @@
         </a>
 
         @else
-        <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ route('news.show', $post) }}">
-            <h3 class="text-lg md:text-xl font-medium">
-                {{ $post->title }}
-            </h3>
-        </a>
+        <h3 class="text-lg md:text-xl font-medium">
+            {{ $post->title }}
+        </h3>
 
         @endif
         <p>By
             <a class="dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $post->user) }}">{{ $post->user->username }}</a>
             {{ $post->created_at->diffForHumans() }} •
-            <a class="dark:text-accent dark:hover:text-primary-100" href="{{ route('news.show', $post) }}">34 comments</a>
+            <a class="dark:text-accent dark:hover:text-primary-100" href="#">34 comments</a>
         </p>
+        @if ($post->description)
+        <p class="py-5">{{ $post->description }}</p>
+        @endif
         <div class="mt-3 text-primary-100">
             @can('delete', $post)
             <form action="{{ route('posts.destroy', $post) }}" method="post">
@@ -89,3 +87,5 @@
         </div>
     </div>
 </article>
+
+@endsection

@@ -24,6 +24,13 @@ class PostController extends Controller
         ]);
     }
 
+    public function show(Post $post)
+    {
+        return view('news.show', [
+            'post' => $post
+        ]);
+    }
+
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);

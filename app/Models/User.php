@@ -22,6 +22,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'bio',
+        'avatar'
     ];
 
     /**
@@ -51,5 +53,10 @@ class User extends Authenticatable
     public function votes()
     {
         return $this->hasMany(Vote::class);
+    }
+
+    public function karmaCount()
+    {
+        return $this->hasManyThrough(Vote::class, Post::class);
     }
 }

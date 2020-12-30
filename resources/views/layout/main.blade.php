@@ -56,7 +56,7 @@
                                         </button>
                                     </li>
                                 </form>
-                                <li><a href="{{ route('settings') }}"><img class="w-10 h-10 object-contain rounded-full border border-accent" src="img/avatar/dummy.jpg" alt=""></a></li>
+                                <li><a href="{{ route('settings') }}"><img class="w-10 h-10 object-contain rounded-full border border-accent" src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="User profile"></a></li>
                                 @endauth
 
                                 @guest

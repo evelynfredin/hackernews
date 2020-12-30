@@ -6,7 +6,7 @@
 
     <div class="flex justify-between my-5 h-auto items-center">
         <div class="w-28 ">
-            <img class="rounded-full object-cover" src="img/avatar/dummy.jpg" alt="">
+            <img class="rounded-full object-cover" src="/uploads/avatars/{{ $user->avatar }}" alt="User profile">
         </div>
         <div>
             <button class="btnAlt shadow-offset bg-accent hover:bg-primary-300 hover:text-primary-100">Edit profile</button>
@@ -18,8 +18,16 @@
         <div class="border-b border-accent mb-5 pb-5">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, officiis facilis. Ipsa, voluptates velit! Eaque minus, saepe assumenda debitis blanditiis nam iure harum. Quam ducimus delectus architecto optio quae, ad veniam perspiciatis numquam nihil maiores aut, quia eius, cumque ipsam!</p>
         </div>
-        <div class="flex">
-            <p>Joined {{ $user->created_at->diffForHumans() }} <span class="text-accent"> • </span> Posted {{ $posts->count() }} times <span class="text-accent"> • </span> Upvoted {{ $user->votes()->count()}} posts</p>
+        <div>
+            <ul class="flex flex-col md:flex-row md:justify-between">
+                <li>{{ $user->karmaCount()->count() }} Karma</li>
+                <li class="text-accent hidden md:block"> • </li>
+                <li>Joined {{ $user->created_at->diffForHumans() }}</li>
+                <li class="text-accent hidden md:block"> • </li>
+                <li>Posted {{ $posts->count() }} times</li>
+                <li class="text-accent hidden md:block"> • </li>
+                <li>Upvoted {{ $user->votes()->count()}} posts</li>
+            </ul>
         </div>
     </div>
 </div>
