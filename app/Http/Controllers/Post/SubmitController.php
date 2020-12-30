@@ -31,6 +31,6 @@ class SubmitController extends Controller
             'description' => $request->description
         ]);
 
-        return back(); // Redirect to the post itself once the post page has been created
+        return redirect()->route('latest'); // Redirect to the post itself once the post page has been created
     }
 }

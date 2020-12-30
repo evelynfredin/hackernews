@@ -11,7 +11,7 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::with(['user', 'post'])->latest()->get();
+        $comments = Comment::with(['user', 'post'])->latest()->paginate(10);
         return view('news.comments', [
             'comments' => $comments
         ]);

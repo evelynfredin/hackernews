@@ -12,9 +12,12 @@
         <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }} • On: <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('news.show', $comment->post) }}">{{ Str::substr($comment->post->title, 0, 40) }}... </a></p>
     </article>
     @endforeach
-
-
 </div>
+
+<div class="mt-10">
+    {{ $comments->links('custompaginator') }}
+</div>
+
 
 @else
 
