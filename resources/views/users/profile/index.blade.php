@@ -24,9 +24,10 @@
                 <li class="text-accent hidden md:block"> • </li>
                 <li>Joined {{ $user->created_at->diffForHumans() }}</li>
                 <li class="text-accent hidden md:block"> • </li>
-                <li>Posted {{ $posts->count() }} times</li>
+                <li>Posted {{ $posts->count() }} {{ Str::plural('time', $posts->count()) }}</li>
                 <li class="text-accent hidden md:block"> • </li>
-                <li>Upvoted {{ $user->votes()->count()}} posts</li>
+                <li>Upvoted {{ $user->votes()->count() }} {{ Str::plural('post', $user->votes()->count()) }}</li>
+
             </ul>
         </div>
     </div>

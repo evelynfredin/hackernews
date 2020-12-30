@@ -36,7 +36,7 @@
                             <ul class="flex flex-col text-center mt-5 md:mt-0 md:flex-row uppercase font-special font-semibold text-2xl md:text-lg">
                                 <li class="py-5 md:py-0"><a class="nav-item" href="{{ route('home') }}">Top</a></li>
                                 <li class="pb-5 md:pb-0"><a class="nav-item" href="{{ route('latest') }}">Latest</a></li>
-                                <li class="pb-5 md:pb-0"><a class="nav-item" href="#">Comments</a></li>
+                                <li class="pb-5 md:pb-0"><a class="nav-item" href="{{ route('comments') }}">Comments</a></li>
                                 <li class="pb-5 md:pb-0"><a class="nav-item" href="{{ route('submit') }}">Submit</a></li>
                             </ul>
                         </div>
