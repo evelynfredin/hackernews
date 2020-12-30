@@ -29,9 +29,10 @@ Route::get('/latest', [PostController::class, 'latest'])->name('latest');
 
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('news.show');
-Route::post('/post/{post}/comments', [CommentController::class, 'store'])->name('posts.comments');
 
+Route::post('/post/{post}/comments', [CommentController::class, 'store'])->name('posts.comments');
 Route::get('/comments', [CommentController::class, 'index'])->name('comments');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 Route::post('/post/{post}/votes', [PostVoteController::class, 'store'])->name('posts.votes');
 Route::delete('/post/{post}/votes', [PostVoteController::class, 'destroy'])->name('posts.votes');

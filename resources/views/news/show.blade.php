@@ -115,6 +115,14 @@
 <article class="py-6 px-10 border rounded-lg m-4 dark:border-primary-500">
     <p class="text-lg">{{ $comment->comment }}</p>
     <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}</p>
+
+    @can('delete', $comment)
+    <form action="{{ route('comments.destroy', $comment) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
+    </form>
+    @endcan
 </article>
 
 @endforeach
