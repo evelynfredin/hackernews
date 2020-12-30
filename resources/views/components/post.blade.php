@@ -76,7 +76,7 @@
         <p>By
             <a class="dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $post->user) }}">{{ $post->user->username }}</a>
             {{ $post->created_at->diffForHumans() }} •
-            <a class="dark:text-accent dark:hover:text-primary-100" href="{{ route('news.show', $post) }}">34 comments</a>
+            <a class="dark:text-accent dark:hover:text-primary-100" href="{{ route('news.show', $post) }}">{{ $post->comments->count() }} {{ Str::plural('comment', $post->comments->count()) }}</a>
         </p>
         <div class="mt-3 text-primary-100">
             @can('delete', $post)

@@ -27,7 +27,6 @@
                 <li>Posted {{ $posts->count() }} {{ Str::plural('time', $posts->count()) }}</li>
                 <li class="text-accent hidden md:block"> • </li>
                 <li>Upvoted {{ $user->votes()->count() }} {{ Str::plural('post', $user->votes()->count()) }}</li>
-
             </ul>
         </div>
     </div>
