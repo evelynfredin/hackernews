@@ -28,3 +28,11 @@ p a {
 .formInput {
   @apply bg-gray-100 dark:bg-primary-500 border border-accent p-3 my-2 block w-full dark:border-primary-300;
 }
+
+.mobile-menu {
+  @apply bg-primary-200 hover:bg-primary-300 text-primary-400 hover:text-primary-100 dark:bg-primary-500 dark:hover:bg-primary-400;
+}
+
+.nav-modal {
+  @apply absolute flex flex-col items-start bg-primary-100 dark:bg-primary-500 shadow-lg overflow-hidden rounded w-40 border mt-2 px-5 py-2 right-0 z-20 font-special font-semibold;
+}

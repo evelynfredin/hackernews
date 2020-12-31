@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker News</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 
 <body class="container mx-auto bg-gray-100 lg:mx-30 text-primary-400 font-body dark:bg-primary-400 dark:text-primary-200">
@@ -22,7 +23,7 @@
                     </div>
                     <!-- Button for mobile menu -->
                     <div class="flex md:hidden">
-                        <button id="burger" aria-label="Open Menu" class="btn-square bg-primary-200 hover:bg-primary-300 text-primary-400 hover:text-primary-100 dark:bg-primary-500 dark:hover:bg-primary-400">
+                        <button id="burger" aria-label="Open Menu" class="btn-square mobile-menu">
                             <svg class="w-9 h-9 fill-current dark:text-accent" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 13a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                             </svg>
@@ -45,18 +46,45 @@
                             <ul class="flex md:h-auto items-center flex-col md:flex-row uppercase text-lg">
 
                                 @auth
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <li>
-                                        <button type="submit" class="md:mr-5 my-10 md:my-0 text-sm hover:text-accent inline-flex h-auto items-center">
-                                            <span class="pr-2">Logout</span>
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
+                                <div class="hidden md:block">
+                                    <li class="relative" x-data="{ isOpen: false }">
+                                        <button class="flex h-auto items-center focus:outline-none" @click="isOpen = true" @keydown.escape="isOpen = false">
+                                            <img class="w-10 h-10 object-contain rounded-full border border-accent" src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="User profile"></a>
+                                            <svg class="w-6 h-6 hidden md:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                             </svg>
                                         </button>
+
+                                        <ul class="nav-modal hidden" x-show="isOpen" @click.away="isOpen = false">
+                                            <li><a class="hover:text-primary-300" href="/user/{{ auth()->user()->username }}">Profile</a></li>
+                                            <li><a class="hover:text-primary-300" href="{{ route('settings') }}">Settings</a></li>
+                                            <form action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                                <li class="border-t border-primary-300">
+                                                    <button type="submit" class="md:mr-5 my-10 md:my-0 text-md hover:text-accent">
+                                                        <span class="font-semibold uppercase text-accent hover:text-primary-300">Logout</span>
+                                                    </button>
+                                                </li>
+                                            </form>
+                                        </ul>
+
                                     </li>
-                                </form>
-                                <li><a href="{{ route('settings') }}"><img class="w-10 h-10 object-contain rounded-full border border-accent" src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="User profile"></a></li>
+                                </div>
+
+                                <div class="md:hidden">
+                                    <ul>
+                                        <li><a class="hover:text-primary-300" href="/user/{{ auth()->user()->username }}">Profile</a></li>
+                                        <li><a class="hover:text-primary-300" href="{{ route('settings') }}">Settings</a></li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <li>
+                                                <button type="submit" class="md:mr-5 my-10 md:my-0 text-md hover:text-accent">
+                                                    <span class="font-semibold uppercase text-accent hover:text-primary-300">Logout</span>
+                                                </button>
+                                            </li>
+                                        </form>
+                                    </ul>
+                                </div>
                                 @endauth
 
                                 @guest
