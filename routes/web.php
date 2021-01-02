@@ -8,7 +8,6 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Post\CommentController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Post\PostVoteController;
-use App\Http\Controllers\Post\SubmitController;
 use App\Http\Controllers\UserProfileController;
 
 Route::get('/register', [UserController::class, 'index'])->name('register');
@@ -21,14 +20,14 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
-Route::get('/submit', [SubmitController::class, 'index'])->name('submit');
-Route::post('/submit', [SubmitController::class, 'store']);
+Route::get('/submit', [PostController::class, 'submit'])->name('submit');
+Route::post('/submit', [PostController::class, 'store']);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/latest', [PostController::class, 'latest'])->name('latest');
 
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('news.show');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::post('/post/{post}/comments', [CommentController::class, 'store'])->name('posts.comments');
 Route::get('/comments', [CommentController::class, 'index'])->name('comments');

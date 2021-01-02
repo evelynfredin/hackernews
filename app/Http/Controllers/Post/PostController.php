@@ -10,10 +10,37 @@ use Illuminate\Support\Arr;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('submit');
+    }
+
+    public function submit()
+    {
+        return view('posts.submit');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'url' => 'url|nullable|required_without:description',
+            'description' => 'required_without:url|nullable'
+        ]);
+
+        $request->user()->posts()->create([
+            'title' => $request->title,
+            'url' => $request->url,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('latest'); // Redirect to the post itself once the post page has been created
+    }
+
     public function index()
     {
         $posts = Post::with(['user', 'votes', 'comments'])->paginate(10);
-        return view('news.index', [
+        return view('posts.index', [
             'posts' => $posts
         ]);
     }
@@ -21,14 +48,14 @@ class PostController extends Controller
     public function latest()
     {
         $posts = Post::with(['user', 'votes', 'comments'])->latest()->paginate(10);
-        return view('news.latest', [
+        return view('posts.latest', [
             'posts' => $posts
         ]);
     }
 
     public function show(Post $post, Comment $comments)
     {
-        return view('news.show', [
+        return view('posts.show', [
             'post' => $post,
             'comments' => $comments
         ]);
