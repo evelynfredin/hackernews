@@ -39,4 +39,24 @@ class CommentController extends Controller
 
         return back();
     }
+
+    public function edit(Comment $comment)
+    {
+        $this->authorize('edit', $comment);
+        return view('posts.editcomments', [
+            'comment' => $comment
+        ]);
+    }
+
+    public function update(Comment $comment, Post $post, Request $request)
+    {
+        $this->authorize('edit', $comment);
+
+        $comment->update([
+            'comment' => $request->comment,
+        ]);
+
+
+        return redirect('/posts/' . $comment->post->id);
+    }
 }

@@ -78,12 +78,19 @@
             {{ $post->created_at->diffForHumans() }} •
             <a class="dark:text-accent dark:hover:text-primary-100" href="{{ route('posts.show', $post) }}">{{ $post->comments->count() }} {{ Str::plural('comment', $post->comments->count()) }}</a>
         </p>
-        <div class="mt-3 text-primary-100">
+        <div class="mt-3 text-primary-100 flex">
             @can('delete', $post)
             <form action="{{ route('posts.destroy', $post) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
+            </form>
+            @endcan
+
+            @can('edit', $post)
+            <form action="{{ route('posts.edit', $post) }}" method="get">
+                @csrf
+                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700 ml-3">Edit</button>
             </form>
             @endcan
         </div>

@@ -75,12 +75,19 @@
         @if ($post->description)
         <p class="py-5 text-xl">{{ $post->description }}</p>
         @endif
-        <div class="mt-3 text-primary-100">
+        <div class="mt-3 text-primary-100 flex">
             @can('delete', $post)
             <form action="{{ route('posts.destroy', $post) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
+            </form>
+            @endcan
+
+            @can('edit', $post)
+            <form action="{{ route('posts.edit', $post) }}" method="get">
+                @csrf
+                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700 ml-3">Edit</button>
             </form>
             @endcan
         </div>
@@ -116,13 +123,22 @@
     <p class="text-lg">{{ $comment->comment }}</p>
     <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}</p>
 
-    @can('delete', $comment)
-    <form action="{{ route('comments.destroy', $comment) }}" method="post">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
-    </form>
-    @endcan
+    <div class="flex">
+        @can('delete', $comment)
+        <form action="{{ route('comments.destroy', $comment) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete comment</button>
+        </form>
+        @endcan
+
+        @can('edit', $comment)
+        <form action="{{ route('comments.edit', $comment) }}" method="get" class="ml-4">
+            @csrf
+            <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700">Edit comment</button>
+        </form>
+        @endcan
+    </div>
 </article>
 
 @endforeach

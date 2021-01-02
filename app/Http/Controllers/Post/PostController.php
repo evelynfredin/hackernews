@@ -69,4 +69,25 @@ class PostController extends Controller
 
         return back();
     }
+
+    public function edit(Post $post)
+    {
+        $this->authorize('edit', $post);
+        return view('posts.editpost', [
+            'post' => $post
+        ]);
+    }
+
+    public function update(Post $post, Request $request)
+    {
+        $this->authorize('edit', $post);
+
+        $post->update([
+            'title' => $request->title,
+            'url' => $request->url,
+            'description' => $request->description
+        ]);
+
+        return redirect('/posts/' . $post->id);
+    }
 }
