@@ -55,9 +55,14 @@ class User extends Authenticatable
         return $this->hasMany(Vote::class);
     }
 
-    public function karmaCount()
+    public function voteCount()
     {
         return $this->hasManyThrough(Vote::class, Post::class);
+    }
+
+    public function commentCount()
+    {
+        return $this->hasManyThrough(Comment::class, Post::class);
     }
 
     public function comments()

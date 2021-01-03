@@ -24,7 +24,7 @@ class UserController extends Controller
         // Validation
         $this->validate($request, [
             'email' => 'required|email|max:255',
-            'username' => 'required|max:255|alpha_num|min: 4',
+            'username' => 'required|unique:users|max:255|alpha_num|min: 4',
             'password' => 'required|confirmed|min:6',
         ]);
 
@@ -38,6 +38,6 @@ class UserController extends Controller
         // Sign in user
         auth()->attempt($request->only('email', 'password'));
 
-        return redirect()->route('settings');
+        return redirect()->route('settings', auth()->user()->id);
     }
 }

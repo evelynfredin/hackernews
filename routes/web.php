@@ -18,7 +18,10 @@ Route::post('/login', [LoginController::class, 'store']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+Route::get('/settings/{user:id}', [SettingsController::class, 'edit'])->name('settings');
+Route::put('/settings/{user:id}/edit', [SettingsController::class, 'update'])->name('user.update');
+Route::get('/settings/changepassword/{user:id}', [SettingsController::class, 'passwordedit'])->name('password.update');
+Route::put('/settings/changepassword/{user:id}', [SettingsController::class, 'passwordupdate']);
 
 Route::get('/submit', [PostController::class, 'submit'])->name('submit');
 Route::post('/submit', [PostController::class, 'store']);

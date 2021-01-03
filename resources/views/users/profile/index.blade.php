@@ -8,21 +8,31 @@
         <div class="w-28 ">
             <img class="rounded-full object-cover" src="/uploads/avatars/{{ $user->avatar }}" alt="User profile">
         </div>
-        <div>
-            <button class="btnAlt shadow-offset bg-accent hover:bg-primary-300 hover:text-primary-100">Edit profile</button>
+        @can('edit', $user)
+        <div class="flex flex-col text-center">
+            <a href="{{ route('settings', auth()->user()->id) }}" class="btnAlt shadow-offset bg-accent hover:bg-primary-300 hover:text-primary-100">Edit profile</a>
+            <a href="{{ route('password.update', auth()->user()->id) }}" class="mt-3 hover:text-accent">Change password</a>
         </div>
+        @else
+        <div class="flex flex-col text-center">
+            <a href="#" class="btnAlt shadow-offset bg-accent hover:bg-primary-300 hover:text-primary-100 flex"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                </svg><span class="ml-2">Send message</span></a>
+        </div>
+        @endcan
     </div>
     <div class="bg-primary-100 py-6 px-10 rounded-lg dark:bg-primary-500">
         <h3 class="font-scpecial text-primary-300 font-medium text-2xl">{{ '@' . $user->username }}</h3>
 
         <div class="border-b border-accent mb-5 pb-5">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, officiis facilis. Ipsa, voluptates velit! Eaque minus, saepe assumenda debitis blanditiis nam iure harum. Quam ducimus delectus architecto optio quae, ad veniam perspiciatis numquam nihil maiores aut, quia eius, cumque ipsam!</p>
+            <p>{{ $user->bio }}</p>
         </div>
+
         <div>
             <ul class="flex flex-col md:flex-row md:justify-between">
-                <li>{{ $user->karmaCount()->count() }} Karma</li>
-                <li class="text-accent hidden md:block"> • </li>
                 <li>Joined {{ $user->created_at->diffForHumans() }}</li>
+                <li class="text-accent hidden md:block"> • </li>
+                <li>{{ ($user->voteCount()->count()) + ($user->commentCount()->count()) }} Karma</li>
                 <li class="text-accent hidden md:block"> • </li>
                 <li>Posted {{ $posts->count() }} {{ Str::plural('time', $posts->count()) }}</li>
                 <li class="text-accent hidden md:block"> • </li>
@@ -30,38 +40,33 @@
             </ul>
         </div>
     </div>
+    @can('edit', $user)
+    <div class="mt-3 text-right">
+        <a href="#" class="text-red-600">Delete Account</a>
+    </div>
+    @endcan
 </div>
 
 
 @if ($posts->count())
-<h2 class="font-special font-semibold text-xl uppercase">Posts</h2>
+<h2 class="font-special font-semibold text-xl uppercase text-accent">{{ $user->username }}’s Posts ({{ $posts->count() }})</h2>
 
 @foreach ($posts as $index => $post)
 
 <div class="border-b dark:border-primary-500 py-6">
-    @if ($post->url)
-    <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ $post->url }}">
-        <h3 class="text-lg">
-            {{ $post->title }}
-            <span class="text-accent dark:text-primary-300 font-light text-base hover:underline"> {{ @parse_url($post->url)['host'] }} </span>
-        </h3>
-    </a>
-
-    @else
-    <a class="hover:text-primary-300 dark:hover:text-primary-100" href="#">
+    <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ route('posts.show', $post) }}">
         <h3 class="text-lg md:text-xl font-medium">
-            {{ $post->title }}
+            {{ Str::title($post->title) }}
         </h3>
     </a>
 
-    @endif
 </div>
 
 @endforeach
 
 @else
 
-<p>There are no articles to show. Try <a href="{{ route('submit')}}">adding one</a></p>
+<p>There are no articles to show.</p>
 
 @endif
 

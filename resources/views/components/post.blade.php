@@ -60,7 +60,7 @@
         @if ($post->url)
         <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ $post->url }}">
             <h3 class="text-lg md:text-xl font-medium">
-                {{ $post->title }}
+                {{ Str::title($post->title) }}
                 <span class="text-accent dark:text-primary-300 font-light text-base hover:underline"> {{ @parse_url($post->url)['host'] }} </span>
             </h3>
         </a>
@@ -68,7 +68,7 @@
         @else
         <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ route('posts.show', $post) }}">
             <h3 class="text-lg md:text-xl font-medium">
-                {{ $post->title }}
+                {{ Str::title($post->title) }}
             </h3>
         </a>
 
