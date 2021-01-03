@@ -29,11 +29,13 @@ class SettingsController extends Controller
         $this->validate($request, [
             'email' => 'required|email|max:255',
             'bio' => 'required',
+            'avatar' => 'required|file'
         ]);
 
         $user->update([
             'email' => $request->email,
             'bio' => $request->bio,
+            'avatar' => $request->avatar->store('uploads/avatars')
         ]);
 
         return redirect('/user/' . auth()->user()->username);

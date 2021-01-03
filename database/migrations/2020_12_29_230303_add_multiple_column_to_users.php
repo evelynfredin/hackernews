@@ -15,7 +15,7 @@ class AddMultipleColumnToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('bio')->nullable();
-            $table->string('avatar')->default('avatar.jpg');
+            $table->string('avatar')->default('uploads/avatars/avatar.jpg');
         });
     }
 

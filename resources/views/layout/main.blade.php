@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hacker News</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 </head>
 
 <body>
@@ -43,7 +43,7 @@
                 <div class="hidden md:block">
                     <li class="relative" x-data="{ isOpen: false }">
                         <button class="flex h-auto items-center focus:outline-none" @click="isOpen = true" @keydown.escape="isOpen = false">
-                            <img class="w-10 h-10 object-contain rounded-full border border-accent" src="/uploads/avatars/{{ auth()->user()->avatar }}" alt="User profile"></a>
+                            <img class="w-10 h-10 object-contain rounded-full border border-accent" src="../{{ auth()->user()->avatar }}" alt="User profile"></a>
                             <svg class="w-6 h-6 hidden md:block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
