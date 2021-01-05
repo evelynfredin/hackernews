@@ -28,15 +28,22 @@ class SettingsController extends Controller
 
         $this->validate($request, [
             'email' => 'required|email|max:255',
-            'bio' => 'required',
-            'avatar' => 'required|file'
+            'bio' => 'nullable',
+            'avatar' => 'image|nullable|'
         ]);
 
-        $user->update([
-            'email' => $request->email,
-            'bio' => $request->bio,
-            'avatar' => $request->avatar->store('uploads/avatars')
-        ]);
+        if ($request->avatar != null) {
+            $user->update([
+                'email' => $request->email,
+                'bio' => $request->bio,
+                'avatar' => $request->avatar->store('uploads/avatars')
+            ]);
+        } else {
+            $user->update([
+                'email' => $request->email,
+                'bio' => $request->bio,
+            ]);
+        }
 
         return redirect('/user/' . auth()->user()->username);
     }

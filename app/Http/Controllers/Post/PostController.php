@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
@@ -34,12 +35,12 @@ class PostController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('latest'); // Redirect to the post itself once the post page has been created
+        return redirect()->route('latest');
     }
 
     public function index()
     {
-        $posts = Post::with(['user', 'votes', 'comments'])->paginate(10);
+        $posts = Post::with('user', 'votes', 'comments')->withCount('votes')->orderByDesc('votes_count')->paginate(10);
         return view('posts.index', [
             'posts' => $posts
         ]);

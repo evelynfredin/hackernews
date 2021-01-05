@@ -6,7 +6,7 @@
 
     <div class="flex justify-between my-5 h-auto items-center">
         <div class="w-28 ">
-            <img class="rounded-full object-cover" src="../{{ $user->avatar }}" alt="User profile">
+            <img class="rounded-full object-cover" src="{{ $user->avatar }}" alt="User profile">
         </div>
         @can('edit', $user)
         <div class="flex flex-col text-center">
