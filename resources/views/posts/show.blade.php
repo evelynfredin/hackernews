@@ -75,7 +75,16 @@
         @if ($post->description)
         <p class="py-5 text-xl">{{ $post->description }}</p>
         @endif
-        <div class="mt-3 text-primary-100 flex">
+    </div>
+
+    @can('delete', $post)
+    <div class="ml-4 relative" x-data="{ editOpen: false }">
+        <button @click="editOpen = true" @keydown.escape="editOpen = false">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+            </svg>
+        </button>
+        <div class="edit-modal hidden text-base" x-show="editOpen" @click.away="editOpen = false">
             @can('delete', $post)
             <form action="{{ route('posts.destroy', $post) }}" method="post">
                 @csrf
@@ -83,15 +92,15 @@
                 <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
             </form>
             @endcan
-
             @can('edit', $post)
             <form action="{{ route('posts.edit', $post) }}" method="get">
                 @csrf
-                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700 ml-3">Edit</button>
+                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700">Edit</button>
             </form>
             @endcan
         </div>
     </div>
+    @endcan
 </article>
 
 <div>
@@ -119,26 +128,37 @@
 <h3 class="font-special text-lg font-semibold mt-20 mb-10 uppercase">Comments ({{ $post->comments->count() }})</h3>
 @foreach ($post->comments as $comment)
 
-<article class="py-6 px-10 border rounded-lg m-4 dark:border-primary-500">
-    <p class="text-lg">{{ $comment->comment }}</p>
-    <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}</p>
-
-    <div class="flex">
-        @can('delete', $comment)
-        <form action="{{ route('comments.destroy', $comment) }}" method="post">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete comment</button>
-        </form>
-        @endcan
-
-        @can('edit', $comment)
-        <form action="{{ route('comments.edit', $comment) }}" method="get" class="ml-4">
-            @csrf
-            <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700">Edit comment</button>
-        </form>
-        @endcan
+<article class="py-6 px-10 border rounded-lg m-4 dark:border-primary-500 flex justify-between">
+    <div>
+        <p class="text-lg">{{ $comment->comment }}</p>
+        <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}</p>
     </div>
+
+    @can('delete', $comment)
+    <div class="ml-4 relative" x-data="{ editOpen: false }">
+        <button @click="editOpen = true" @keydown.escape="editOpen = false">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+            </svg>
+        </button>
+        <div class="edit-modal hidden text-base" x-show="editOpen" @click.away="editOpen = false">
+            @can('delete', $comment)
+            <form action="{{ route('comments.destroy', $comment) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
+            </form>
+            @endcan
+            @can('edit', $comment)
+            <form action="{{ route('comments.edit', $comment) }}" method="get" class="ml-4">
+                @csrf
+                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700">Edit</button>
+            </form>
+            @endcan
+        </div>
+    </div>
+    @endcan
+
 </article>
 
 @endforeach
