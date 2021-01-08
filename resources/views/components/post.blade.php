@@ -78,7 +78,15 @@
             {{ $post->created_at->diffForHumans() }} •
             <a class="dark:text-accent dark:hover:text-primary-100" href="{{ route('posts.show', $post) }}">{{ $post->comments->count() }} {{ Str::plural('comment', $post->comments->count()) }}</a>
         </p>
-        <div class="mt-3 text-primary-100 flex">
+    </div>
+    @can('delete', $post)
+    <div class="ml-4 relative" x-data="{ editOpen: false }">
+        <button @click="editOpen = true" @keydown.escape="editOpen = false">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+            </svg>
+        </button>
+        <div class="edit-modal hidden text-base" x-show="editOpen" @click.away="editOpen = false">
             @can('delete', $post)
             <form action="{{ route('posts.destroy', $post) }}" method="post">
                 @csrf
@@ -86,13 +94,13 @@
                 <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
             </form>
             @endcan
-
             @can('edit', $post)
             <form action="{{ route('posts.edit', $post) }}" method="get">
                 @csrf
-                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700 ml-3">Edit</button>
+                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700">Edit</button>
             </form>
             @endcan
         </div>
     </div>
+    @endcan
 </article>

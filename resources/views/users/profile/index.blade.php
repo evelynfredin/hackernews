@@ -42,7 +42,7 @@
     </div>
     @can('edit', $user)
     <div class="mt-3 text-right">
-        <a href="#" class="text-red-600">Delete Account</a>
+        <a href="#" class="text-red-600">Delete account</a>
     </div>
     @endcan
 </div>
