@@ -6,7 +6,7 @@
     <form action="{{ route('posts.votes', $post) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
+        <button aria-label="Remove upvote" class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
             <div class="text-3xl font-special text-accent px-3 font-semibold border-b-2 border-gray-400 dark:text-primary-300">{{ ++$index }}</div>
             <div class="text-xl h-auto items-center font-special font-semibold text-accent dark:text-primary-300 inline-flex">
                 {{ $post->votes->count() }}
@@ -22,7 +22,7 @@
 
     <form action="{{ route('posts.votes', $post) }}" method="POST">
         @csrf
-        <button class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
+        <button aria-label="Upvote" class="flex flex-col justify-center max-h-20 items-center rounded-md py-2 px-3 mr-5 bg-primary-100 dark:bg-primary-500">
             <div class="text-3xl font-special text-accent px-3 font-semibold border-b-2 border-gray-400 dark:text-primary-300">{{ ++$index }}</div>
             <div class="text-xl h-auto items-center font-special font-semibold text-accent dark:text-primary-300 inline-flex">
                 {{ $post->votes->count() }}
@@ -81,7 +81,7 @@
     </div>
     @can('delete', $post)
     <div class="ml-4 relative" x-data="{ editOpen: false }">
-        <button @click="editOpen = true" @keydown.escape="editOpen = false">
+        <button aria-label="Post settings" @click="editOpen = true" @keydown.escape="editOpen = false">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
             </svg>
@@ -91,13 +91,13 @@
             <form action="{{ route('posts.destroy', $post) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
+                <button aria-label="Delete post" type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete</button>
             </form>
             @endcan
             @can('edit', $post)
             <form action="{{ route('posts.edit', $post) }}" method="get">
                 @csrf
-                <button type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700">Edit</button>
+                <button aria-label="Edit post" type="submit" class="bg-green-600 px-2 py-1 text-primary-100 text-sm hover:bg-green-700">Edit</button>
             </form>
             @endcan
         </div>

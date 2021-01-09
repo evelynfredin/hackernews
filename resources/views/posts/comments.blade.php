@@ -5,7 +5,6 @@
 @if ($comments->count())
 
 <div class="flex flex-col my-5">
-    <h2>Comments</h2>
     @foreach ($comments as $comment)
     <article class="py-6 px-10 border rounded-lg m-4 dark:border-primary-500 flex justify-between">
         <div>

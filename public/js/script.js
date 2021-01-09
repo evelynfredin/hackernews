@@ -15,5 +15,3 @@ burger.addEventListener("click", () => {
     burger.innerHTML = openMenu;
   }
 });
-
-console.log(burger);

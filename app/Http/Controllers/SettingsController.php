@@ -70,4 +70,12 @@ class SettingsController extends Controller
 
         return redirect('/user/' . auth()->user()->username);
     }
+
+    public function destroy(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('/');
+    }
 }

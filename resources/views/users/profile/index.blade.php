@@ -41,8 +41,12 @@
         </div>
     </div>
     @can('edit', $user)
-    <div class="mt-3 text-right">
-        <a href="#" class="text-red-600">Delete account</a>
+    <div class="flex justify-end mt-2">
+        <form action="{{ route('user.destroy', auth()->user()->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-600 px-2 py-1 text-primary-100 text-sm hover:bg-red-700">Delete your account</button>
+        </form>
     </div>
     @endcan
 </div>
@@ -66,7 +70,7 @@
 
 @else
 
-<p>There are no articles to show.</p>
+<p>{{ $user->username }} has not written any posts yet!</p>
 
 @endif
 

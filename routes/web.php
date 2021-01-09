@@ -23,6 +23,8 @@ Route::put('/settings/{user:id}/edit', [SettingsController::class, 'update'])->n
 Route::get('/changepassword/{user:id}', [SettingsController::class, 'passwordedit'])->name('password.update');
 Route::put('/changepassword/{user:id}', [SettingsController::class, 'passwordupdate']);
 
+Route::delete('/delete/{user:id}', [SettingsController::class, 'destroy'])->name('user.destroy');
+
 Route::get('/submit', [PostController::class, 'submit'])->name('submit');
 Route::post('/submit', [PostController::class, 'store']);
 
