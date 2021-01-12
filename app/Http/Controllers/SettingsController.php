@@ -74,6 +74,7 @@ class SettingsController extends Controller
     public function destroy(Request $request, $id)
     {
         $user = User::findOrFail($id);
+
         $user->delete();
 
         return redirect('/');

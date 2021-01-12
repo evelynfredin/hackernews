@@ -22,21 +22,18 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Validation
         $this->validate($request, [
             'email' => 'required|email|max:255',
             'username' => 'required|unique:users|max:255|alpha_num|min: 4',
             'password' => 'required|confirmed|min:6',
         ]);
 
-        // Store in database
         User::create([
             'email' => $request->email,
             'username' => $request->username,
             'password' => Hash::make($request->password)
         ]);
 
-        // Sign in user
         Auth::attempt($request->only('email', 'password'));
 
         return redirect()->route('settings', auth()->user()->id);

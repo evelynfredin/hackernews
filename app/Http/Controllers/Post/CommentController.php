@@ -12,6 +12,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::with(['user', 'post'])->latest()->paginate(10);
+
         return view('posts.comments', [
             'comments' => $comments
         ]);
@@ -43,6 +44,7 @@ class CommentController extends Controller
     public function edit(Comment $comment)
     {
         $this->authorize('edit', $comment);
+
         return view('posts.editcomments', [
             'comment' => $comment
         ]);
@@ -55,7 +57,6 @@ class CommentController extends Controller
         $comment->update([
             'comment' => $request->comment,
         ]);
-
 
         return redirect('/posts/' . $comment->post->id);
     }

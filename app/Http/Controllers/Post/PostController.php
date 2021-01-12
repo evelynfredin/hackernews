@@ -41,6 +41,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('user', 'votes', 'comments')->withCount('votes')->orderByDesc('votes_count')->paginate(10);
+
         return view('posts.index', [
             'posts' => $posts
         ]);
@@ -49,6 +50,7 @@ class PostController extends Controller
     public function latest()
     {
         $posts = Post::with(['user', 'votes', 'comments'])->latest()->paginate(10);
+
         return view('posts.latest', [
             'posts' => $posts
         ]);
@@ -74,6 +76,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('edit', $post);
+
         return view('posts.editpost', [
             'post' => $post
         ]);
