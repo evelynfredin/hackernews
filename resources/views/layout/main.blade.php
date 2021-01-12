@@ -8,6 +8,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="og:description" content="Hacker News is a social news website focusing on computer science and entrepreneurship." />
+    <meta name="og:image" content="https://evelynfredin.com/quickassets/hacker-news.jpg" />
 </head>
 
 <body>

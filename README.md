@@ -1,5 +1,7 @@
 # Hacker News
 
+![Hacker News Mockups](https://evelynfredin.com/quickassets/hacker-news.jpg)
+
 ## Assignment
 
 Create a Hacker News clone.
