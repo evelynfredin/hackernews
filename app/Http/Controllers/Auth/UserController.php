@@ -37,7 +37,7 @@ class UserController extends Controller
         ]);
 
         // Sign in user
-        auth()->attempt($request->only('email', 'password'));
+        Auth::attempt($request->only('email', 'password'));
 
         return redirect()->route('settings', auth()->user()->id);
     }

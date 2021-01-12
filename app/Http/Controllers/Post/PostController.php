@@ -68,7 +68,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        return back();
+        return redirect('/');
     }
 
     public function edit(Post $post)
