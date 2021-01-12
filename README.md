@@ -8,10 +8,13 @@ Create a Hacker News clone.
 
 ## Tech Stack
 
-- PHP using Laravel
+- PHP 8x
+- Laravel 8x
 - HTML
-- CSS using TailwindCSS
-- JavaScript using Alpine.js
+- CSS
+- TailwindCSS
+- JavaScript
+- Alpine.js
 - SQLite
 
 ## Features
@@ -44,10 +47,11 @@ Create a Hacker News clone.
 ## To Run This Code On Your Machine
 
 You need:
-[PHP](https://www.php.net/docs.php)
-[Laravel 8x](https://laravel.com/docs/8.x)
-[Composer](https://getcomposer.org/)
-[SQLite](https://sqlite.org/index.html)
+
+- [PHP](https://www.php.net/docs.php)
+- [Laravel 8x](https://laravel.com/docs/8.x)
+- [Composer](https://getcomposer.org/)
+- [SQLite](https://sqlite.org/index.html)
 
 When you're ready you can:
 
