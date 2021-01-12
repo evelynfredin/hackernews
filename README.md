@@ -43,69 +43,47 @@ Create a Hacker News clone.
 
 ## To Run This Code On Your Machine
 
-1. Install PHP-SQLite3
+You need:
+[PHP](https://www.php.net/docs.php)
+[Laravel 8x](https://laravel.com/docs/8.x)
+[Composer](https://getcomposer.org/)
+[SQLite](https://sqlite.org/index.html)
 
-   - On Windows (Ubuntu)
+When you're ready you can:
 
-   ```
-       sudo apt-get install php-sqlite3
-   ```
-
-   - On macOS (With Brew)
-
-   ```
-       $ brew install sqlite
-   ```
-
-2. Install Composer
-
-   - On macOS
-
-   ```
-     brew install composer
-   ```
-
-   - On Windows (WSL)
-
-   ```
-   sudo apt install php-cli unzip
-   curl -sS https://getcomposer.org/installer -o composer-setup.php
-   HASH=`curl -sS https://composer.github.io/installer.sig`
-   php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-   sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-   ```
-
-3. Clone this repo
+1. Clone this repo
 
 ```
   git clone https://github.com/evelynfredin/hackernews.git
 ```
 
-4. Navigate to the right directory `$ cd /path/to/directory/`
+2. Navigate to the right directory `$ cd /path/to/directory/`
 
-5. Install dependencies
+3. Install dependencies
 
 ```
   composer install
 ```
 
-6. Copy the `.env.example` file
+4. Copy the `.env.example` file
 
 ```
 cp .env.example .env
 ```
 
-7. Set up an application key
+5. Set up an application key
 
 ```
 php artisan key:generate
 ```
 
-8. Get a server running
+6. Get a server running
 
 ```
 php artisan serve
 ```
+
+## Code Review
 
 ## Testing Done By
 
@@ -118,5 +96,3 @@ MIT License
 ## Made By
 
 Evelyn Fredin
-
-## Code Review
