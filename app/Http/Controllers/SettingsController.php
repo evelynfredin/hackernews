@@ -29,7 +29,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'email' => 'required|email|max:255',
             'bio' => 'nullable',
-            'avatar' => 'image|nullable|'
+            'avatar' => 'image|nullable|mimes:png,jpg'
         ]);
 
         if ($request->avatar != null) {

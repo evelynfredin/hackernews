@@ -11,7 +11,7 @@
         @method('PUT')
         <label class="block">
             <span>Avatar:</span>
-            <input class="formInput" type="file" name="avatar" id="avatar">
+            <input class="formInput" type="file" accept="image/jpg, image/jpeg, image/png" name="avatar" id="avatar">
         </label>
 
         @error('avatar')
