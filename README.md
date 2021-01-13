@@ -91,7 +91,7 @@ php artisan serve
 
 ## Testing Done By
 
-## -
+- [Martin Hansson](https://github.com/Alegherix)
 
 ## License
 
