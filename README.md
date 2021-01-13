@@ -81,7 +81,13 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-6. Get a server running
+6. Create a Symlink for showing and storing avatars
+
+```
+php artisan storage:link
+```
+
+7. Get a server running
 
 ```
 php artisan serve
