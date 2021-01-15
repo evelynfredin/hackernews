@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -59,5 +60,20 @@ class CommentController extends Controller
         ]);
 
         return redirect('/posts/' . $comment->post->id);
+    }
+
+    public function vote(Comment $comment)
+    {
+        $comment->vote()->create([
+            'user_id' => auth()->user()->id,
+            'comment_id' => $comment->id
+        ]);
+        return back();
+    }
+
+    public function deleteVote(Comment $comment)
+    {
+        Vote::where('user_id', auth()->user()->id)->where('comment_id', $comment->id)->delete();
+        return back();
     }
 }

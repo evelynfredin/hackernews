@@ -17,6 +17,17 @@ class Post extends Model
         'description'
     ];
 
+    public function commentVotedBy(User $user, Comment $comment)
+    {
+        // return Vote::where('user_id', $user->id)->where('comment_id', $comment->id)->first() === null ? true : false;
+
+        if (Vote::where('user_id', $user->id)->where('comment_id', $comment->id)->first() === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function votedBy(User $user)
     {
         return $this->votes->contains('user_id', $user->id);
