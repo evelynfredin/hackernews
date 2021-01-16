@@ -126,12 +126,40 @@
 @endauth
 
 <h3 class="font-special text-lg font-semibold mt-20 mb-10 uppercase">Comments ({{ $post->comments->count() }})</h3>
+
 @foreach ($post->comments as $comment)
 
 <article class="py-6 px-10 border rounded-lg m-4 dark:border-primary-500 flex justify-between">
     <div>
         <p class="text-lg">{{ $comment->comment }}</p>
-        <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }}</p>
+        <p class="my-3 text-sm"  style="display: inline;">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">
+            {{ $comment->user->username }}</a> • 
+            {{ $comment->created_at->diffForHumans() }} • 
+            {{ $comment->vote->count() }} {{ Str::plural('vote', $comment->vote->count()) }}
+            @auth
+                @if ($post->commentVotedBy(auth()->user(), $comment))
+                    <form action="{{ route('comments.vote.delete', $comment) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @METHOD('DELETE')
+                        <button>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </form>
+                @else
+                   
+                    <form action="{{ route('comments.vote', $comment) }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                            </svg> 
+                        </button>
+                    </form>
+                @endif
+            @endauth
+        </p>
     </div>
 
     @can('delete', $comment)

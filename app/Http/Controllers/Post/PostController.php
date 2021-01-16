@@ -56,11 +56,12 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post, Comment $comments)
+    public function show(Post $post)
     {
+
+        $post = Post::with(['votes', 'comments'])->findOrFail($post->id);
         return view('posts.show', [
-            'post' => $post,
-            'comments' => $comments
+            'post' => $post
         ]);
     }
 

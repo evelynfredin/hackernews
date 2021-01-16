@@ -42,7 +42,13 @@ Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->nam
 Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 Route::put('/comments/{comment}/edit', [CommentController::class, 'update'])->name('comments.update');
 
+Route::post('/comments/{comment}/vote', [CommentController::class, 'vote'])->name('comments.vote');
+Route::delete('/comments/{comment}/vote', [CommentController::class, 'deleteVote'])->name('comments.vote.delete');
+
+
+
 Route::post('/post/{post}/votes', [PostVoteController::class, 'store'])->name('posts.votes');
-Route::delete('/post/{post}/votes', [PostVoteController::class, 'destroy'])->name('posts.votes');
+
+Route::delete('/post/{post}/votes', [PostVoteController::class, 'destroy']);
 
 Route::get('/user/{user:username}', [UserProfileController::class, 'index'])->name('user.profile');
