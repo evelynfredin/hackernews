@@ -92,6 +92,8 @@
     <h2 class="font-special font-semibold text-xl uppercase text-accent">{{ $user->username }}’s likes ({{ $user->votes->count() }})</h2>
 
     @foreach ($user->votes as $index => $vote)
+
+    {{-- {{dd($vote->comment)}} --}}
         @php
             if($vote->comment_id === null){
                 $body = $vote->post->title;
