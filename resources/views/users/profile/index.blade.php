@@ -51,27 +51,69 @@
     @endcan
 </div>
 
+{{-- {{ dd($user->comments->count()) }} --}}
+
 
 @if ($posts->count())
-<h2 class="font-special font-semibold text-xl uppercase text-accent">{{ $user->username }}’s Posts ({{ $posts->count() }})</h2>
+    <h2 class="font-special font-semibold text-xl uppercase text-accent">{{ $user->username }}’s Posts ({{ $posts->count() }})</h2>
 
-@foreach ($posts as $index => $post)
+    @foreach ($posts as $index => $post)
 
-<div class="border-b dark:border-primary-500 py-6">
-    <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ route('posts.show', $post) }}">
-        <h3 class="text-lg md:text-xl font-medium">
-            {{ Str::title($post->title) }}
-        </h3>
-    </a>
-
-</div>
-
+    <div class="border-b dark:border-primary-500 py-6">
+        <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ route('posts.show', $post) }}">
+            <h3 class="text-lg md:text-xl font-medium">
+                {{ Str::title($post->title) }}
+            </h3>
+        </a>
+    </div>
 @endforeach
-
 @else
+    <p>{{ $user->username }} has not written any posts yet!</p>
+@endif
 
-<p>{{ $user->username }} has not written any posts yet!</p>
+@if ($user->comments->count())
+    <h2 class="font-special font-semibold text-xl uppercase text-accent">{{ $user->username }}’s Comments ({{ $user->comments->count() }})</h2>
 
+    @foreach ($user->comments as $index => $comment)
+
+    <div class="border-b dark:border-primary-500 py-6">
+        <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ route('posts.show', $post) }}">
+            <h3 class="text-lg md:text-xl font-medium">
+                {{ Str::title($comment->comment) }}
+            </h3>
+        </a>
+    </div>
+@endforeach
+@else
+    <p>{{ $user->username }} has not written any comments yet!</p>
+@endif
+
+@if ($user->votes->count())
+    <h2 class="font-special font-semibold text-xl uppercase text-accent">{{ $user->username }}’s likes ({{ $user->votes->count() }})</h2>
+
+    @foreach ($user->votes as $index => $vote)
+
+    {{-- {{dd($vote->comment)}} --}}
+        @php
+            if($vote->comment_id === null){
+                $body = $vote->post->title;
+                $page_id = $vote->post->id;
+
+            }else{
+                $body = $vote->comment->comment;
+                $page_id = $vote->comment->post_id;
+            }
+        @endphp
+        <div class="border-b dark:border-primary-500 py-6">
+            <a class="hover:text-primary-300 dark:hover:text-primary-100" href="{{ route('posts.show', $page_id) }}">
+                <h3 class="text-lg md:text-xl font-medium">
+                    {{ $body }}
+                </h3>
+            </a>
+        </div>
+    @endforeach
+@else
+    <p>{{ $user->username }} has not liked any posts/comments yet.</p>
 @endif
 
 
