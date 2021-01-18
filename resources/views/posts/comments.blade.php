@@ -9,7 +9,10 @@
     <article class="py-6 px-10 border rounded-lg m-4 dark:border-primary-500 flex justify-between">
         <div>
             <p class="text-lg">{{ $comment->comment }}</p>
-            <p class="my-3 text-sm">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a> • {{ $comment->created_at->diffForHumans() }} • On: <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('posts.show', $comment->post) }}">{{ Str::substr($comment->post->title, 0, 40) }}... </a></p>
+            <p class="my-3 text-sm">By 
+                <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">{{ $comment->user->username }}</a>
+                  • {{ $comment->created_at->diffForHumans() }} • On: <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('posts.show', $comment->post) }}">
+                    {{ Str::substr($comment->post->title, 0, 40) }}... </a></p>
         </div>
         @can('delete', $comment)
         <div class="ml-4 relative" x-data="{ editOpen: false }">

@@ -135,7 +135,7 @@
         <p class="my-3 text-sm"  style="display: inline;">By <a class="text-primary-300 dark:text-accent dark:hover:text-primary-100" href="{{ route('user.profile', $comment->user) }}">
             {{ $comment->user->username }}</a> • 
             {{ $comment->created_at->diffForHumans() }} • 
-            {{ $comment->vote->count() }} {{ Str::plural('vote', $comment->vote->count()) }}
+             {{ $comment->vote->count() }} {{ Str::plural('vote', $comment->vote->count()) }}
             @auth
                 @if ($post->commentVotedBy(auth()->user(), $comment))
                     <form action="{{ route('comments.vote.delete', $comment) }}" method="POST" style="display: inline;">

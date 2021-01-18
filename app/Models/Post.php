@@ -19,7 +19,6 @@ class Post extends Model
 
     public function commentVotedBy(User $user, Comment $comment)
     {
-        // return Vote::where('user_id', $user->id)->where('comment_id', $comment->id)->first() === null ? true : false;
 
         if (Vote::where('user_id', $user->id)->where('comment_id', $comment->id)->first() === null) {
             return false;
