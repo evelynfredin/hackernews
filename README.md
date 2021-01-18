@@ -95,6 +95,26 @@ php artisan serve
 
 ## Code Review
 
+1. Database cannot be found using the path defined in `.env.example`. Remove and update config/database.php with `database_path('database.sqlite')` → `('database.db')` instead.
+
+2. It is possible to delete other users accounts by changing the form id to another users.
+
+3. It would be good to regenerate session id on login as to prevent session fixation attacks. Auth:attempt does not do this by default.
+
+4. Avatar upload does not handle PostTooLargeException.
+
+5. Consider using resource controllers for your CRUD routes.
+
+6. Passing in old values as shown on register would be good for post description as to not lose post content on invalid url/title.
+
+7. Gorgeous design, dark mode looks stunning!
+
+8. "No comments" redirect in /comments leads to /submit for posts instead of showing existing posts to comment on.
+
+9. The use of tailwind component classes for styling is very clean!
+
+10. Overall code and functionality is excellent, it looks like you really learned and utilized as much as you possibly could!
+
 ## Testing Done By
 
 - [Martin Hansson](https://github.com/Alegherix)
