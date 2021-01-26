@@ -93,6 +93,10 @@ php artisan storage:link
 php artisan serve
 ```
 
+## Pull Request for Hackernews+
+
+[Pull Request](https://github.com/evelynfredin/hackernews/pulls?q=is%3Apr+is%3Aclosed)
+
 ## Code Review
 
 ## Testing Done By
