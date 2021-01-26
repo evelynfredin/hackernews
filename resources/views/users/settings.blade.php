@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="my-5 pb-10 border-b dark:border-primary-500">
     <h2 class="font-special font-semibold text-2xl md:text-3xl uppercase">Edit profile</h2>
 
@@ -13,6 +14,14 @@
             <span>Avatar:</span>
             <input class="formInput" type="file" accept="image/jpg, image/jpeg, image/png" name="avatar" id="avatar">
         </label>
+
+        <label class="block mt-5">
+            <span>Load image from url:</span>
+            <input type="text" class="formInput imageFromUrl" name="urlImage" id="urlImage" placeholder="http://" />
+        </label>
+
+
+        <div class="preview-image"></div>
 
         @error('avatar')
         <div class="bg-red-500 py-1 px-3 mb-3 text-primary-100 mt-2">
@@ -47,5 +56,5 @@
     </form>
 
 </div>
-
+<script src="{{ asset('js/scripts.js') }}"></script>
 @endsection
